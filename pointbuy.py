@@ -5,10 +5,7 @@ costs = [0, 0, 0, 0, 0, 0]
 
 # to turn ability scores into modifiers
 def mod(ability):
-    if ability in [8, 9]: return -1
-    elif ability in [10, 11]: return 0
-    elif ability in [12, 13]: return 1
-    elif ability in [14, 15]: return 2
+    return int((ability-10)/2)
       
 # to print out your stats in a table
 def display(scores, attributes):
@@ -23,20 +20,12 @@ def display(scores, attributes):
         print(format(attribute, "16s"),\
               format(score, "<18d"), format(mod(score), "<13d"), cost)
 
-# there was probably a better way to do this... self explanatory though
+# using a dictionary and .get() to return the value from the key!
 def attr(att):
-    if att.lower() == "str":
-        return "Strength"
-    elif att.lower() == "dex":
-        return "Dexterity"
-    elif att.lower() == "con":
-        return "Constitution"
-    elif att.lower() == "int":
-        return "Intelligence"
-    elif att.lower() == "wis":
-        return "Wisdom"
-    elif att.lower() == "cha":
-        return "Charisma"
+    atts = {"str": "Strength", "dex": "Dexterity", "con": "Constitution",\
+            "int": "Intelligence", "wis": "Wisdom", "cha": "Charisma"}
+    att = att.lower()
+    return atts.get(att)
     
 # the main program!
 while True:
