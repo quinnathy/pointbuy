@@ -62,13 +62,18 @@ while True:
         while True:
             print()
             change = input("How many points would you like to add/subtract? (i.e. +3, -2) >> ")
-            edit = change[0]
-            num = int(change[1])
-            if edit == "+" and (scores[attributes.index(attr(att))] + num <= 15):
+            if change == "0":
+                print()
+                break
+            else:
+                edit = change[0]
+                num = int(change[1])
+            if edit == "+" and (scores[attributes.index(attr(att))] + num <= 15) and num <= total:
                 scores[attributes.index(attr(att))] += num
                 costs[attributes.index(attr(att))] += num
                 total -= num
-                print(">> Your ", attr(att), " score is now ", scores[attributes.index(attr(att))], "!", sep="", end="\n\n")
+                print(">> Your ", attr(att), " score is now ", scores[attributes.index(attr(att))], "!", sep="")
+                print("You have", total, "points left.\n")
                 break
             elif edit == "+" and (scores[attributes.index(attr(att))] + num > 15):
                 print(">> You can only add up to a maximum of 15 points! Try again!")
@@ -77,10 +82,14 @@ while True:
                 scores[attributes.index(attr(att))] -= num
                 costs[attributes.index(attr(att))] -= num
                 total += num
-                print(">> Your ", attr(att), " score is now ", scores[attributes.index(attr(att))], "!", sep="", end="\n\n")
+                print(">> Your ", attr(att), " score is now ", scores[attributes.index(attr(att))], "!", sep="")
+                print("You have", total, "points left.\n")
                 break
             elif edit == "-" and (scores[attributes.index(attr(att))] - num < 8):
                 print(">> You can only subtract to a minimum of 8 points! Try again!")
+                continue
+            else:
+                print("You don't have enough points left for that :( try again!")
                 continue
 
     elif menu.lower() == "r":
